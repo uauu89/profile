@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이순욱-포트폴리오</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="test.css">
+</head>
+<body>
+    <div class="pageWrap">
+        <header>
+            <h1 class="hidden">이순욱 개인 포트폴리오 사이트</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" class="disLink active">안녕하세요</a></li>
+                    <li><a href="#" class="disLink">포트폴리오</a></li>
+                    <li><a href="#" class="disLink">경력사항</a></li>
+                </ul>
+            </nav>
+        </header>
+        <section id="main" class="hidden">
+            <h2 class="hidden">메인 페이지</h2>
+            <div>
+                <p>
+                    안녕하세요, <br>
+                    <span>웹퍼블리셔/프론트엔드</span> <span>개발자 지망생</span><br>
+                    이순욱입니다
+                </p>
+            </div>
+
+        </section>
+
+        <footer class="hidden">
+            <p>
+                <i class="fa-regular fa-envelope"></i>
+                <span>이메일 :</span>
+                uauu89@gmail.com
+            </p>
+        </footer>
+
+        <section id="portfolio">
+            <header>
+                <h2 class="hidden">포트폴리오 페이지</h2>
+                <div class="searchWrap">
+                    <a href="#modal_searchOption" class="disLink btn_search">
+                        사용언어로 검색하기
+                    </a>
+                    <form id="modal_searchOption" method="POST">
+                        <button type="button" aria-label="검색모달 닫기 버튼" class="btn_close"><i class="fa-solid fa-x"></i></button>
+                        <ul class="tagList">
+                            <li>
+                                <input type="checkbox" id="search_html" name="searchOption">
+                                <label for="search_html" class="customCheckbox"></label>
+                                <label for="search_html" class="tagStyle html">HTML5</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search_css" name="searchOption">
+                                <label for="search_css" class="customCheckbox"></label>
+                                <label for="search_css" class="tagStyle css">CSS</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search_js" name="searchOption">
+                                <label for="search_js" class="customCheckbox"></label>
+                                <label for="search_js" class="tagStyle js">JS</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search_jQuery" name="searchOption">
+                                <label for="search_jQuery" class="customCheckbox"></label>
+                                <label for="search_jQuery" class="tagStyle jQuery">jQuery</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search_php" name="searchOption">
+                                <label for="search_php" class="customCheckbox"></label>
+                                <label for="search_php" class="tagStyle php">php</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search_github" name="searchOption">
+                                <label for="search_github" class="customCheckbox"></label>
+                                <label for="search_github" class="tagStyle github">github</label>
+                            </li>
+                        </ul>
+                        <!-- <button class="disLink">검색하기</button> -->
+                    </form>
+                </div>
+                <ul class="viewOptionWrap">
+                    <li>
+                        <input type="radio" id="view_list" name="viewOption" checked>
+                        <label for="view_list" class="list">
+                            <i class="fa-solid fa-list"></i>
+                            <span class="hidden">목록형으로 보기</span>
+                        </label>
+                    </li>
+                    <li>
+                        <input type="radio" id="view_item" name="viewOption">
+                        <label for="view_item" class="item">
+                            <i class="fa-solid fa-table-cells"></i>
+                            <span class="hidden">바둑판형으로 보기</span>
+                        </label>
+                    </li>
+                </ul>
+            </header>
+            <ul class="portfolioList">
+                <li>
+                    <img src="img/test_480x360.jpg" alt="">
+                    <div class="portfolio_itemWrap">
+                        <h3>KDT - 랜딩페이지 리뉴얼</h3>
+                        <ul class="tagList">
+                            <li class="tagStyle html">HTML5</li>
+                            <li class="tagStyle css">CSS</li>
+                            <li class="tagStyle js">JS</li>
+                            <li class="tagStyle php">php</li>
+                        </ul>
+                        <ul class="linkList">
+                            <li><a href="#">사이트 바로가기</a></li>
+                            <li><a href="#">깃허브 바로가기</a></li>
+                            <li><a href="#">피그마 바로가기</a></li>
+                        </ul>
+                        <p>기간 : <span>2022.12 ~ 2024.03</span></p>
+                        <p>KDT 교육 중 첫 번째로 진행한 프로젝트로 웹 규정을 준수하여 기초를 활용한 프로젝트</p>
+                    </div>
+                </li>
+                
+                <li>
+                    <img src="img/test_480x360.jpg" alt="">
+                    <div class="portfolio_itemWrap">
+                        <h3>KDT 프로젝트 - 랜딩페이지 리뉴얼</h3>
+                        <ul class="tagList">
+                            <li class="tagStyle html">HTML5</li>
+                            <li class="tagStyle css">CSS</li>
+                            <li class="tagStyle js">JS</li>
+                            <li class="tagStyle php">php</li>
+                        </ul>
+                        <ul class="linkList">
+                            <li><a href="#">사이트 바로가기</a></li>
+                            <li><a href="#">깃허브 바로가기</a></li>
+                            <li><a href="#">피그마 바로가기</a></li>
+                        </ul>
+                        <p>기간 : <span>2022.12 ~ 2024.03</span></p>
+                        <p>KDT 교육 중 첫 번째로 진행한 프로젝트로 웹 규정을 준수하여 기초를 활용한 프로젝트</p>
+                    </div>
+                </li>
+                
+                <li>
+                    <img src="img/test_480x360.jpg" alt="">
+                    <div class="portfolio_itemWrap">
+                        <h3>KDT 프로젝트 - 랜딩페이지 리뉴얼</h3>
+                        <ul class="tagList">
+                            <li class="tagStyle html">HTML5</li>
+                            <li class="tagStyle css">CSS</li>
+                            <li class="tagStyle js">JS</li>
+                            <li class="tagStyle php">php</li>
+                        </ul>
+                        <ul class="linkList">
+                            <li><a href="#">사이트 바로가기</a></li>
+                            <li><a href="#">깃허브 바로가기</a></li>
+                            <li><a href="#">피그마 바로가기</a></li>
+                        </ul>
+                        <p>기간 : <span>2022.12 ~ 2024.03</span></p>
+                        <p>ddddddddddddddd</p>
+                    </div>
+                </li>
+                
+                <li>
+                    <img src="img/test_480x360.jpg" alt="">
+                    <div class="portfolio_itemWrap">
+                        <h3>KDT - 랜딩페이지 리뉴얼</h3>
+                        <ul class="tagList">
+                            <li class="tagStyle html">HTML5</li>
+                            <li class="tagStyle css">CSS</li>
+                            <li class="tagStyle js">JS</li>
+                            <li class="tagStyle php">php</li>
+                        </ul>
+                        <ul class="linkList">
+                            <li><a href="#">사이트 바로가기</a></li>
+                            <li><a href="#">깃허브 바로가기</a></li>
+                            <li><a href="#">피그마 바로가기</a></li>
+                        </ul>
+                        <p>기간 : <span>2022.12 ~ 2024.03</span></p>
+                        <p>KDT 교육 중 첫 번째로 진행한 프로젝트로 웹 규정을 준수하여 기초를 활용한 프로젝트</p>
+                    </div>
+                </li>
+                
+                <li>
+                    <img src="img/test_480x360.jpg" alt="">
+                    <div class="portfolio_itemWrap">
+                        <h3>KDT 프로젝트 - 랜딩페이지 리뉴얼</h3>
+                        <ul class="tagList">
+                            <li class="tagStyle html">HTML5</li>
+                            <li class="tagStyle css">CSS</li>
+                            <li class="tagStyle js">JS</li>
+                            <li class="tagStyle php">php</li>
+                        </ul>
+                        <ul class="linkList">
+                            <li><a href="#">사이트 바로가기</a></li>
+                            <li><a href="#">깃허브 바로가기</a></li>
+                            <li><a href="#">피그마 바로가기</a></li>
+                        </ul>
+                        <p>기간 : <span>2022.12 ~ 2024.03</span></p>
+                        <p>KDT 교육 중 첫 번째로 진행한 프로젝트로 웹 규정을 준수하여 기초를 활용한 프로젝트</p>
+                    </div>
+                </li>
+                
+                <li>
+                    <img src="img/test_480x360.jpg" alt="">
+                    <div class="portfolio_itemWrap">
+                        <h3>KDT 프로젝트 - 랜딩페이지 리뉴얼</h3>
+                        <ul class="tagList">
+                            <li class="tagStyle html">HTML5</li>
+                            <li class="tagStyle css">CSS</li>
+                            <li class="tagStyle js">JS</li>
+                            <li class="tagStyle php">php</li>
+                        </ul>
+                        <ul class="linkList">
+                            <li><a href="#">사이트 바로가기</a></li>
+                            <li><a href="#">깃허브 바로가기</a></li>
+                            <li><a href="#">피그마 바로가기</a></li>
+                        </ul>
+                        <p>기간 : <span>2022.12 ~ 2024.03</span></p>
+                        <p>ddddddddddddddd</p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+    <script src="test.js"></script>
+</body>
+</html>
