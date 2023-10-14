@@ -4,7 +4,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
 
 
-@import url("customReset.css");
+@import url("./css/customReset.css");
 
 :root{
     --color_main: #53B167;
@@ -19,6 +19,7 @@
     --color_tagGithub: #000;
     --color_tagPhp: #8993BE;
     --color_tagReact: #24C0DC;
+    --color_tagMySQL: #015B85;
 
 }
 
@@ -104,6 +105,7 @@ footer span{
 
 #portfolio{
     display: grid;
+    grid-template-rows: min-content auto;
     height: 100%;
     padding: 60px 20px;
 }
@@ -288,6 +290,7 @@ footer span{
 .tagStyle.php{background-color: var(--color_tagPhp);}
 .tagStyle.github{background-color: var(--color_tagGithub);}
 .tagStyle.react{background-color: var(--color_tagReact);}
+.tagStyle.MySQL{background-color: var(--color_tagMySQL);}
 
 
 .linkList{
@@ -339,6 +342,7 @@ footer span{
     grid-template-columns: repeat(auto-fill, minmax(338px, auto));
     /* grid-template-rows: repeat(auto-fill); */
     grid-auto-rows: max-content;
+    justify-content: space-evenly;
     column-gap: 30px;
     row-gap: 100px;
 }

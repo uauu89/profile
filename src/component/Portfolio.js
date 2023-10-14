@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import Axios from "axios";
+// import Axios from "axios";
 
 import '../css/Portfolio.css';
 import PortfolioItem from "./PortfolioItem";
+import PortfolioForm from "./PortfolioForm";
+// import PortfolioTag from "./PortfolioTag";
 
 
 
@@ -12,10 +12,12 @@ import PortfolioItem from "./PortfolioItem";
 export default class Portfolio extends Component{
 
     state = {
-        itemList : [],
-        items : "",
-    }
+        tag : this.props.data.tag,
+        load : this.props.data.load,
+        list : this.props.data.list,
+        empty : false,
 
+    }
     // getList = ()=>{
     //     console.log("axios excute")
     //     Axios.get("http://localhost:8000/Portfolio", {})
@@ -28,85 +30,106 @@ export default class Portfolio extends Component{
     // }
 
     getList = ()=>{
-        fetch("http://localhost:8000/Portfolio")
-        .then(res=>{
-            return res.json()
-        })
-        .then(data=>{
-            this.setState({itemList : data});
-        })
-        
+        if(!this.state.load){
+            // fetch("http://localhost:8000/Portfolio")
+            fetch("http://101.101.211.45:8000/Portfolio")
+            .then(res=>{
+                return res.json()
+            })
+            .then(res=>{
+                this.setState({
+                    tag : res[0],
+                    list : res[1]
+                });
+                this.props.setPortfolioGroup({
+                    tag : res[0],
+                    load : true,
+                    list : res[1]
+                })
+            })
+        }
     }
 
+
+    openOption = (e)=>{
+        e.preventDefault();
+        document.querySelector(".btnSearchWrap").classList.toggle("active");
+    }
+
+    checkViewOption = ()=>{
+        document.querySelector(".portfolioList").classList.toggle("table");
+    }
+
+    searchOption = (e)=>{
+        let checkedDom = document.querySelectorAll("input[name=searchOption]:checked"),
+            checkedSkill = [];
+        checkedDom.forEach(i=>checkedSkill.push(i.getAttribute("id").replace("search_", "")));
+        
+        let result = [];
+        this.props.data.list.forEach(i=>{
+            for(let word of checkedSkill){
+                if(i.skill.indexOf(word) > -1){
+                    result.push(i);
+                    break;
+                }
+            }
+        })
+
+        if(checkedSkill.length){
+            this.setState({
+                list:result,
+                empty : result.length ? false: true
+            })
+        }else{
+            this.setState({
+                list : this.props.data.list,
+                empty : false
+            })
+        }
+    };
 
     componentDidMount(){
         this.getList();
     }
-
+    
     render(){
         return(
-            <section id="portfolio">
+            <section id="portfolio" className="secPortfolio">
                 <header>
                     <h2 className="hidden">포트폴리오 페이지</h2>
-                    <div className="searchWrap">
-                        <a href="#modal_searchOption" className="disLink btn_search">
+                    <div className="btnSearchWrap">
+                        <a
+                            href="#modal_searchOption"
+                            className="disLink btn_search"
+                            onClick={this.openOption}
+                        >
                             사용언어로 검색하기
                         </a>
-                        <form id="modal_searchOption" method="POST">
-                            <button type="button" aria-label="검색모달 닫기 버튼" className="btn_close"><i className="fa-solid fa-x"></i></button>
-                            <ul className="tagList">
-                                <li>
-                                    <input type="checkbox" id="search_html" name="searchOption" />
-                                    <label htmlFor="search_html" className="customCheckbox"></label>
-                                    <label htmlFor="search_html" className="tagStyle html">HTML5</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="search_css" name="searchOption" />
-                                    <label htmlFor="search_css" className="customCheckbox"></label>
-                                    <label htmlFor="search_css" className="tagStyle css">CSS</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="search_js" name="searchOption" />
-                                    <label htmlFor="search_js" className="customCheckbox"></label>
-                                    <label htmlFor="search_js" className="tagStyle js">JS</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="search_jQuery" name="searchOption" />
-                                    <label htmlFor="search_jQuery" className="customCheckbox"></label>
-                                    <label htmlFor="search_jQuery" className="tagStyle jQuery">jQuery</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="search_php" name="searchOption" />
-                                    <label htmlFor="search_php" className="customCheckbox"></label>
-                                    <label htmlFor="search_php" className="tagStyle php">php</label>
-                                </li>
-                                <li>
-                                    <input type="checkbox" id="search_github" name="searchOption" />
-                                    <label htmlFor="search_github" className="customCheckbox"></label>
-                                    <label htmlFor="search_github" className="tagStyle github">github</label>
-                                </li>
-                            </ul>
-                        </form>
+                        <PortfolioForm 
+                            openOption = {this.openOption}
+                            data = {this.state}
+                            searchOption = {this.searchOption}
+                        />
                     </div>
                     <ul className="viewOptionWrap">
                         <li>
-                            <input type="radio" id="view_list" name="viewOption" />
+                            <input type="radio" id="view_list" name="viewOption" onChange={this.checkViewOption}/>
                             <label htmlFor="view_list" className="list">
                                 <i className="fa-solid fa-list"></i>
                                 <span className="hidden">목록형으로 보기</span>
                             </label>
                         </li>
                         <li>
-                            <input type="radio" id="view_item" name="viewOption" />
-                            <label htmlFor="view_item" className="item">
+                            <input type="radio" id="view_table" name="viewOption" onChange={this.checkViewOption} defaultChecked/>
+                            <label htmlFor="view_table" className="table">
                                 <i className="fa-solid fa-table-cells"></i>
                                 <span className="hidden">바둑판형으로 보기</span>
                             </label>
                         </li>
                     </ul>
                 </header>
-                <ul className="portfolioList">
-                    {this.state.itemList.map((i, idx)=><PortfolioItem key={idx} data={i}/>)}
+                <ul className="portfolioList table">
+                    {this.state.empty ? (<p className="noResult">조건에 맞는 결과가 없습니다.</p>) : (this.state.list.map((i, idx)=><PortfolioItem key={idx} data={i} tagInfo={this.state.tag}/>))}
                 </ul>
                    
             </section>

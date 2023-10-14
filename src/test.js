@@ -33,7 +33,7 @@ dom_viewOption.forEach(i=>{
 
 
 document.querySelector("body").addEventListener("click", e=>{
-    console.log(e.target);
+    // console.log(e.target);
     if(e.target.classList.contains("btn_search")){
         document.querySelector(".searchWrap").classList.toggle("active");
     }else if(e.target.classList.contains("fa-x") || !e.target.closest("form")){

@@ -1,0 +1,86 @@
+.secPortfolio form{
+    display: none;
+    position: absolute;
+    left: 20px;
+    margin-top: 10px;
+    padding: 30px 40px;
+    border-radius: 5px;
+    background-color: var(--color_gray);
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
+    width: 600px;
+}
+.secPortfolio .active form{
+    display: block;
+}
+
+.secPortfolio .btn_close{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 20px;
+    color: var(--color_textDefault);
+}
+
+.secPortfolio form ul{
+    gap: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, max-content);
+}
+
+.secPortfolio form li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+.secPortfolio form input[name="searchOption"]{
+    opacity: 0;
+    position: absolute;
+}
+
+.customCheckbox{
+    display: block;
+    position: relative;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border: 3px solid var(--color_main);
+    border-radius: 5px;
+}
+
+.secPortfolio form :focus-visible + .customCheckbox{
+    outline: auto;
+    outline-color: #000;
+}
+
+.secPortfolio form :checked + .customCheckbox{
+    background-color: var(--color_main);
+}
+
+.secPortfolio form :checked + .customCheckbox::before{
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
+    display: block;
+    content: "";
+    width: 4px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 2px;
+    transform-origin: 2px 8px;
+    transform: rotate(-40deg);
+}
+.secPortfolio form :checked + .customCheckbox::after{
+    position: absolute;
+    left: 4px;
+    bottom: 2px;
+    display: block;
+    content: "";
+    width: 4px;
+    height: 16px;
+    background-color: #fff;
+    border-radius: 2px;
+    transform-origin: 2px 14px;
+    transform: rotate(40deg);
+}

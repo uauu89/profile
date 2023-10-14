@@ -1,24 +1,48 @@
+/* :root{
+    --color_tagHTML: #F16529;
+    --color_tagCSS: #379AD6;
+    --color_tagJS: #E9CA21;
+    --color_tagJQuery: #0868AB;
+    --color_tagGithub: #000;
+    --color_tagPhp: #8993BE;
+    --color_tagReact: #24C0DC;
+    --color_tagMySQL: #015B85;
+}
 
-/* -- 포트폴리오 */
+
+.tagStyle.HTML5{background-color: var(--color_tagHTML);}
+.tagStyle.CSS{background-color: var(--color_tagCSS);}
+.tagStyle.JS{background-color: var(--color_tagJS);}
+.tagStyle.jQuery{background-color: var(--color_tagJQuery);}
+.tagStyle.php{background-color: var(--color_tagPhp);}
+.tagStyle.github{background-color: var(--color_tagGithub);}
+.tagStyle.react{background-color: var(--color_tagReact);}
+.tagStyle.MySQL{background-color: var(--color_tagMySQL);} */
 
 
+.noResult{
+    grid-column: 1 / -1;
+    text-align: center;
+}
 
-#portfolio{
+
+.secPortfolio{
     display: grid;
+    grid-template-rows: min-content auto;
     height: 100%;
     padding: 60px 20px;
 }
 
-#portfolio header{
+.secPortfolio header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-
 }
 
-.searchWrap{
+.btnSearchWrap{
     position: relative;
 }
+
 .btn_search{
     display: block;
     line-height: 30px;
@@ -33,7 +57,6 @@
     background-color: var(--color_main);
     margin-right: 6px;
 }
-
 .btn_search::after{
     font-family: "Font Awesome 6 Free";
     display: inline-block;
@@ -44,7 +67,6 @@
     margin-left: 3px;
     transition: 0.3s;
 }
-
 .active .btn_search::after{
     transform: rotate(180deg);
 }
@@ -53,7 +75,6 @@
     display: flex;
     gap: 15px;
 }
-
 .viewOptionWrap li{
     position: relative;
 }
@@ -78,22 +99,20 @@
     background-color: var(--color_main);
     color: #fff;
 }
-
 .viewOptionWrap input:focus-visible + label{
     outline: auto;
     outline-color: #000;
 }
-
-.viewOptionWrap .item{
+.viewOptionWrap .table{
     font-size: 36px;
     color: #D9D9D9;
 }
 
-.viewOptionWrap .item ::before{
+.viewOptionWrap .table ::before{
     z-index: 1;
     position: relative;
 }
-.viewOptionWrap .item ::after{
+.viewOptionWrap .table ::after{
     content: "";
     display: block;
     background-color: var(--color_textDefault);
@@ -105,67 +124,10 @@
     transform: translate(-50%, -50%);
 }
 
-.viewOptionWrap input:checked + .item ::before{color: var(--color_main);}
-.viewOptionWrap input:checked + .item ::after{background-color: #fff;}
-
-.portfolioList{
-    margin-top: 30px;
-    padding: 50px 10px;
-    /* display: flex; */
-    display: grid;
-    grid-template-rows: min-content;
-    /* flex-direction: column; */
-    gap: 180px;
-    overflow-y: scroll;
-}
+.viewOptionWrap input:checked + .table ::before{color: var(--color_main);}
+.viewOptionWrap input:checked + .table ::after{background-color: #fff;}
 
 
-.portfolioList::-webkit-scrollbar {
-    width: 10px;
-    /* border-radius: 5px; */
-}
-.portfolioList::-webkit-scrollbar-thumb {
-    background: #242;
-    border: 2px solid var(--color_main);
-    border-radius:5px;
-}
-.portfolioList::-webkit-scrollbar-track {
-    border-radius:5px;
-	background: var(--color_main); 
-}
-
-
-.portfolioList > li{
-    /* display: flex; */
-    display: grid;
-    grid-template-columns: max-content auto;
-    gap: 50px;
-}
-
-.portfolioList > li > img{
-    /* flex-basis: 400px; */
-    width: 400px;
-    height: 225px;
-    border: 25px solid #FDF7EA;
-    border-radius: 10px;
-    flex-shrink: 1;
-    box-sizing: content-box;
-}
-
-
-.portfolio_itemWrap{
-    padding: 20px 30px;
-    border-radius: 5px;
-    background-color: var(--color_gray);
-    /* flex: 1; */
-    flex-grow: 1;
-}
-
-.portfolio_itemWrap h3{
-    font-size: 48px;
-    font-weight: 700;
-    margin-bottom: 20px;
-}
 
 .tagList{
     display: flex;
@@ -182,14 +144,65 @@
     padding: 5px;
     border-radius: 3px;
 }
-.tagStyle.HTML5{background-color: var(--color_tagHTML);}
-.tagStyle.CSS{background-color: var(--color_tagCSS);}
-.tagStyle.JS{background-color: var(--color_tagJS);}
-.tagStyle.jQuery{background-color: var(--color_tagJQuery);}
-.tagStyle.php{background-color: var(--color_tagPhp);}
-.tagStyle.github{background-color: var(--color_tagGithub);}
-.tagStyle.react{background-color: var(--color_tagReact);}
 
+
+/* 포트폴리오 리스트 */
+
+.portfolioList{
+    margin-top: 30px;
+    padding: 50px 10px;
+    display: grid;
+    grid-template-rows: min-content;
+    gap: 180px;
+    overflow-y: scroll;
+}
+
+.portfolioList::-webkit-scrollbar {
+    width: 10px;
+}
+.portfolioList::-webkit-scrollbar-thumb {
+    /* background: #242; */
+    background: rgba(255,255,255, 0.5);
+    border: 2px solid var(--color_main);
+    border-radius:5px;
+}
+.portfolioList::-webkit-scrollbar-track {
+    border-radius:5px;
+	background: var(--color_main); 
+}
+
+.portfolioList > li{
+    display: grid;
+    grid-template-columns: max-content auto;
+    gap: 50px;
+}
+.portfolioList > li > img{
+    width: 400px;
+    height: 225px;
+    border: 25px solid #FDF7EA;
+    border-radius: 10px;
+    flex-shrink: 1;
+    box-sizing: content-box;
+}
+
+.portfolio_itemWrap{
+    padding: 20px 30px;
+    border-radius: 5px;
+    background-color: var(--color_gray);
+    flex-grow: 1;
+}
+.portfolio_itemWrap h3{
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.portfolio_itemWrap p{
+    text-indent: 10px;
+}
+.portfolio_itemWrap p:first-of-type{
+    margin-bottom: 30px;
+}
 
 .linkList{
     margin: 40px 0 50px;
@@ -212,7 +225,6 @@
     margin-right: 10px;
     vertical-align: bottom;
 }
-
 .linkList a::after{
     display: block;
     content: "";
@@ -227,18 +239,10 @@
     right: 0;
 }
 
-.portfolio_itemWrap p{
-    text-indent: 10px;
-}
-.portfolio_itemWrap p:first-of-type{
-    margin-bottom: 30px;
-}
-
-
-/* ------------------- 바둑형 보기 */
+/* 포트폴리오 리스트 - 바둑형 보기 */
 .portfolioList.table{
     grid-template-columns: repeat(auto-fill, minmax(338px, auto));
-    /* grid-template-rows: repeat(auto-fill); */
+    justify-content: space-evenly;
     grid-auto-rows: max-content;
     column-gap: 30px;
     row-gap: 100px;
@@ -272,7 +276,6 @@
     padding: 10px;
     background-color: unset;
     display: grid;
-    /* grid-auto-rows: max-content; */
     gap: 25px;
 }
 
@@ -287,96 +290,3 @@
 .table .portfolio_itemWrap p{
     display: none;
 }
-
-/* 검색 옵션 모달창 */
-
-#portfolio form{
-    display: none;
-    position: absolute;
-    left: 20px;
-    margin-top: 10px;
-    padding: 30px 40px;
-    border-radius: 5px;
-    background-color: var(--color_gray);
-    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
-    width: 600px;
-}
-#portfolio .active form{
-    display: block;
-}
-
-#portfolio .btn_close{
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 20px;
-    color: var(--color_textDefault);
-}
-
-#portfolio form ul{
-    gap: 50px;
-    display: grid;
-    grid-template-columns: repeat(4, max-content);
-}
-
-#portfolio form li{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: relative;
-}
-
-#portfolio form input[name="searchOption"]{
-    opacity: 0      ;
-    position: absolute;
-}
-
-.customCheckbox{
-    display: block;
-    position: relative;
-    width: 22px;
-    height: 22px;
-    background-color: #fff;
-    border: 3px solid var(--color_main);
-    border-radius: 5px;
-}
-
-#portfolio form :focus-visible + .customCheckbox{
-    outline: auto;
-    outline-color: #000;
-}
-
-#portfolio form :checked + .customCheckbox{
-    background-color: var(--color_main);
-}
-
-#portfolio form :checked + .customCheckbox::before{
-    position: absolute;
-    left: 4px;
-    bottom: 2px;
-    display: block;
-    content: "";
-    width: 4px;
-    height: 10px;
-    background-color: #fff;
-    border-radius: 2px;
-    transform-origin: 2px 8px;
-    transform: rotate(-40deg);
-}
-#portfolio form :checked + .customCheckbox::after{
-    position: absolute;
-    left: 4px;
-    bottom: 2px;
-    display: block;
-    content: "";
-    width: 4px;
-    height: 16px;
-    background-color: #fff;
-    border-radius: 2px;
-    transform-origin: 2px 14px;
-    transform: rotate(40deg);
-}
-
-
-
-/* -- /포트폴리오 */

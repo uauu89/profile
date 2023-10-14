@@ -2,12 +2,14 @@ import { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 
+import "../css/Introduction.css"
+
 class Introduce extends Component{
 
     render(){
         return(
             <>
-                <section id="main">
+                <section id="main" className="secIntroduction">
                     <h2 className="hidden">메인 페이지</h2>
                     <div>
                         <p>

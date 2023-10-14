@@ -1,0 +1,25 @@
+.secIntroduction div{
+    position: relative;
+    margin-top: 100px;
+    font-size: 64px;
+    line-height: 104px;
+    padding-left: 50px;
+}
+.secIntroduction div::before{
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 10px;
+    height: 100%;
+    background-color: var(--color_main);
+}
+
+footer{
+    margin-top: 140px;
+    font-size: 30px;
+}
+
+footer span{
+    margin: 0 10px 0 6px;
+}
