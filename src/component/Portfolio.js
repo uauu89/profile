@@ -16,7 +16,7 @@ export default class Portfolio extends Component{
         load : this.props.data.load,
         list : this.props.data.list,
         empty : false,
-
+        searchMethod : "And"
     }
     // getList = ()=>{
     //     console.log("axios excute")
@@ -33,9 +33,7 @@ export default class Portfolio extends Component{
         if(!this.state.load){
             // fetch("http://localhost:8000/Portfolio")
             fetch("http://101.101.211.45:8000/Portfolio")
-            .then(res=>{
-                return res.json()
-            })
+            .then(res=>res.json())
             .then(res=>{
                 this.setState({
                     tag : res[0],
@@ -59,32 +57,71 @@ export default class Portfolio extends Component{
     checkViewOption = ()=>{
         document.querySelector(".portfolioList").classList.toggle("table");
     }
+    checkSearchMethod = (e)=>{
+        document.querySelectorAll(".tagList input[name='searchOption']:checked").forEach(i=>{
+            i.checked = false;
+        })
+        this.setState({
+            list : this.props.data.list,
+            empty : false
+        })
+        let checkValue = e.currentTarget.getAttribute("id").replace("search", "");
+        this.setState({searchMethod : checkValue});
+    }
 
-    searchOption = (e)=>{
+    searchOption = ()=>{
         let checkedDom = document.querySelectorAll("input[name=searchOption]:checked"),
             checkedSkill = [];
         checkedDom.forEach(i=>checkedSkill.push(i.getAttribute("id").replace("search_", "")));
         
         let result = [];
-        this.props.data.list.forEach(i=>{
-            for(let word of checkedSkill){
-                if(i.skill.indexOf(word) > -1){
-                    result.push(i);
-                    break;
+        if(this.state.searchMethod === "And"){
+            // result = [...this.props.data.list];
+            this.props.data.list.forEach(i=>{
+                let check = true;
+                for(let word of checkedSkill){
+                    if(i.skill.indexOf(word) === -1){
+                        check = false;
+                        break;
+                    }
                 }
+                if(check){
+                    result.push(i);
+                }
+            })
+    
+            if(checkedSkill.length){
+                this.setState({
+                    list: result,
+                    empty : result.length ? false: true
+                })
+            }else{
+                this.setState({
+                    list : this.props.data.list,
+                    empty : false
+                })
             }
-        })
-
-        if(checkedSkill.length){
-            this.setState({
-                list:result,
-                empty : result.length ? false: true
-            })
         }else{
-            this.setState({
-                list : this.props.data.list,
-                empty : false
+            this.props.data.list.forEach(i=>{
+                for(let word of checkedSkill){
+                    if(i.skill.indexOf(word) > -1){
+                        result.push(i);
+                        break;
+                    }
+                }
             })
+    
+            if(checkedSkill.length){
+                this.setState({
+                    list:result,
+                    empty : result.length ? false: true
+                })
+            }else{
+                this.setState({
+                    list : this.props.data.list,
+                    empty : false
+                })
+            }
         }
     };
 
@@ -109,6 +146,7 @@ export default class Portfolio extends Component{
                             openOption = {this.openOption}
                             data = {this.state}
                             searchOption = {this.searchOption}
+                            checkSearchMethod = {this.checkSearchMethod}
                         />
                     </div>
                     <ul className="viewOptionWrap">

@@ -15,7 +15,7 @@ class Introduce extends Component{
                         <p>
                             안녕하세요, <br />
                             <span>웹퍼블리셔/프론트엔드</span> <span>개발자 지망생</span><br />
-                            이순욱입니다
+                            <em>이순욱 입니다</em>
                         </p>
                     </div>
                 </section>

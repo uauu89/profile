@@ -1,4 +1,4 @@
-.secPortfolio form{
+.formSearchOption{
     display: none;
     position: absolute;
     left: 20px;
@@ -9,11 +9,11 @@
     box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.1);
     width: 600px;
 }
-.secPortfolio .active form{
+.active .formSearchOption{
     display: block;
 }
 
-.secPortfolio .btn_close{
+.formSearchOption .btn_close{
     position: absolute;
     top: 15px;
     right: 20px;
@@ -21,20 +21,20 @@
     color: var(--color_textDefault);
 }
 
-.secPortfolio form ul{
+.formSearchOption .tagList{
     gap: 50px;
     display: grid;
     grid-template-columns: repeat(4, max-content);
 }
 
-.secPortfolio form li{
+.formSearchOption .tagList li{
     display: flex;
     align-items: center;
     gap: 10px;
     position: relative;
 }
 
-.secPortfolio form input[name="searchOption"]{
+.formSearchOption input[name="searchOption"]{
     opacity: 0;
     position: absolute;
 }
@@ -49,16 +49,16 @@
     border-radius: 5px;
 }
 
-.secPortfolio form :focus-visible + .customCheckbox{
+.formSearchOption .tagList :focus-visible + .customCheckbox{
     outline: auto;
     outline-color: #000;
 }
 
-.secPortfolio form :checked + .customCheckbox{
+.formSearchOption .tagList :checked + .customCheckbox{
     background-color: var(--color_main);
 }
 
-.secPortfolio form :checked + .customCheckbox::before{
+.formSearchOption .tagList :checked + .customCheckbox::before{
     position: absolute;
     left: 4px;
     bottom: 2px;
@@ -71,7 +71,7 @@
     transform-origin: 2px 8px;
     transform: rotate(-40deg);
 }
-.secPortfolio form :checked + .customCheckbox::after{
+.formSearchOption .tagList :checked + .customCheckbox::after{
     position: absolute;
     left: 4px;
     bottom: 2px;
@@ -83,4 +83,42 @@
     border-radius: 2px;
     transform-origin: 2px 14px;
     transform: rotate(40deg);
+}
+
+.searchMethodWrap{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 16px;
+    margin-top: 60px;
+}
+
+.searchMethodWrap > ul{
+    display: flex;
+    gap: 20px
+}
+
+.searchMethodWrap input[name="searchMethod"]{
+    position: absolute;
+    opacity: 0;
+}
+
+.searchMethodWrap label{
+    display: block;
+    width: 80px;
+    background-color: #D9D9D9;
+    font-weight: 700;
+    line-height: 30px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.searchMethodWrap :focus-visible + label{
+    outline: auto;
+    outline-color: #000;
+}
+.searchMethodWrap :checked + label{
+    color: #fff;
+    background-color: var(--color_main);
 }

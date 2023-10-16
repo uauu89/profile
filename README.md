@@ -13,4 +13,9 @@
         데이터 관리 페이지 만들기
 
 
-    
+23.10.16
+
+    완료 : 
+        Introduction 컴포넌트 인삿말 디자인 수정
+        Portfolio 태그로 검색에서 or / and 옵션 추가
+        테이블명 key > idx로 변경 / colOrder는 유지

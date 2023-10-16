@@ -37,6 +37,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 1;
 }
 
 .btnSearchWrap{
@@ -150,7 +151,8 @@
 
 .portfolioList{
     margin-top: 30px;
-    padding: 50px 10px;
+    /* padding: 50px 10px; */
+    padding: 50px 20px 50px 0;
     display: grid;
     grid-template-rows: min-content;
     gap: 180px;
@@ -242,9 +244,10 @@
 /* 포트폴리오 리스트 - 바둑형 보기 */
 .portfolioList.table{
     grid-template-columns: repeat(auto-fill, minmax(338px, auto));
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
+    justify-content: space-around;
     grid-auto-rows: max-content;
-    column-gap: 30px;
+    column-gap: 20px;
     row-gap: 100px;
 }
 
