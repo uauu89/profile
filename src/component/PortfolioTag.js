@@ -1,23 +1,26 @@
 import React, { Component } from "react";
+import styles from "../css/PortfolioTag.module.css"
+
 export default class PortfolioTag extends Component{
 
     render(){
 
         return(
-            <li>
+            <li className={styles.tagWrap}>
                 <input 
-                    type="checkbox" id={"search_"+this.props.data.name} 
-                    name="searchOption"
-                    onChange={this.props.searchOption} 
+                    type="checkbox" name="searchOption"
+                    id={"search_"+this.props.data.name} 
+                    className={styles.inputCheck}
+                    onChange={()=>this.props.searchOption()} 
                 />
                 <label 
                     htmlFor={"search_"+this.props.data.name}
-                    className="customCheckbox"
+                    className={styles.customCheck}
                 >
                 </label>
                 <label
                     htmlFor={"search_"+this.props.data.name}
-                    className="tagStyle"
+                    className={styles.tagStyle}
                     style={{backgroundColor : this.props.data.color}}
                 >
                     {this.props.data.name}

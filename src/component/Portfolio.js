@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-// import Axios from "axios";
 
-import '../css/Portfolio.css';
 import PortfolioItem from "./PortfolioItem";
 import PortfolioForm from "./PortfolioForm";
-// import PortfolioTag from "./PortfolioTag";
 
-
-
+import styles from '../css/Portfolio.module.css';
 
 export default class Portfolio extends Component{
 
@@ -16,23 +12,14 @@ export default class Portfolio extends Component{
         load : this.props.data.load,
         list : this.props.data.list,
         empty : false,
-        searchMethod : "And"
+        searchMethod : "And",
+        formOpen : -1,
+        viewTable : true
     }
-    // getList = ()=>{
-    //     console.log("axios excute")
-    //     Axios.get("http://localhost:8000/Portfolio", {})
-    //     .then((res)=>{
-    //         const {data} = res;
-    //         this.setState({itemList : data});
-    //         // this.state.itemList = data;
-    //     })
-    //     .catch(e=>console.error(e));
-    // }
 
     getList = ()=>{
         if(!this.state.load){
-            // fetch("http://localhost:8000/Portfolio")
-            fetch("http://101.101.211.45:8000/Portfolio")
+            fetch("http://101.101.211.45:8000/portfolio")
             .then(res=>res.json())
             .then(res=>{
                 this.setState({
@@ -48,19 +35,16 @@ export default class Portfolio extends Component{
         }
     }
 
-
-    openOption = (e)=>{
+    formClose = e=>{
         e.preventDefault();
-        document.querySelector(".btnSearchWrap").classList.toggle("active");
+        let val = this.state.formOpen;
+        this.setState({
+            formOpen : val * -1
+        })
     }
 
-    checkViewOption = ()=>{
-        document.querySelector(".portfolioList").classList.toggle("table");
-    }
     checkSearchMethod = (e)=>{
-        document.querySelectorAll(".tagList input[name='searchOption']:checked").forEach(i=>{
-            i.checked = false;
-        })
+        // 리스트 초기화
         this.setState({
             list : this.props.data.list,
             empty : false
@@ -72,11 +56,11 @@ export default class Portfolio extends Component{
     searchOption = ()=>{
         let checkedDom = document.querySelectorAll("input[name=searchOption]:checked"),
             checkedSkill = [];
-        checkedDom.forEach(i=>checkedSkill.push(i.getAttribute("id").replace("search_", "")));
-        
+
+            checkedDom.forEach(i=>checkedSkill.push(i.getAttribute("id").replace("search_", "")));
+            
         let result = [];
         if(this.state.searchMethod === "And"){
-            // result = [...this.props.data.list];
             this.props.data.list.forEach(i=>{
                 let check = true;
                 for(let word of checkedSkill){
@@ -131,43 +115,63 @@ export default class Portfolio extends Component{
     
     render(){
         return(
-            <section id="portfolio" className="secPortfolio">
-                <header>
+            <section id="portfolio" className={styles.wrap}>
+                <header className={styles.header}>
                     <h2 className="hidden">포트폴리오 페이지</h2>
-                    <div className="btnSearchWrap">
+                    <div className={styles.btnSearchWrap}>
                         <a
                             href="#modal_searchOption"
-                            className="disLink btn_search"
-                            onClick={this.openOption}
+                            className={`${styles.btn_search} ${this.state.formOpen > -1 ? styles.active : ""}`}
+                            onClick={e=>this.formClose(e)}
                         >
                             사용언어로 검색하기
                         </a>
                         <PortfolioForm 
-                            openOption = {this.openOption}
+                            formOpen = {this.state.formOpen}
+                            formClose = {this.formClose}
                             data = {this.state}
                             searchOption = {this.searchOption}
                             checkSearchMethod = {this.checkSearchMethod}
                         />
                     </div>
-                    <ul className="viewOptionWrap">
-                        <li>
-                            <input type="radio" id="view_list" name="viewOption" onChange={this.checkViewOption}/>
-                            <label htmlFor="view_list" className="list">
+                    <ul className={styles.viewOptionWrap}>
+                        <li className={`${styles.posRel} ${this.state.viewTable? "": styles.check}`}>
+                            <input type="radio" id="view_list" name="viewOption" 
+                                className={styles.input}
+                                onChange={()=>{
+                                    this.setState({
+                                        viewTable : false
+                                    })
+                                }}
+                            />
+                            <label htmlFor="view_list" className={`${styles.label} ${styles.iconList} `}>
                                 <i className="fa-solid fa-list"></i>
                                 <span className="hidden">목록형으로 보기</span>
                             </label>
                         </li>
-                        <li>
-                            <input type="radio" id="view_table" name="viewOption" onChange={this.checkViewOption} defaultChecked/>
-                            <label htmlFor="view_table" className="table">
+                        <li className={`${styles.posRel} ${this.state.viewTable? styles.check: ""}`}>
+                            <input type="radio" id="view_table" name="viewOption" 
+                                className={styles.input}
+                                defaultChecked
+                                onChange={()=>{
+                                    this.setState({
+                                        viewTable : true
+                                    })
+                                }} 
+                            />
+                            <label htmlFor="view_table" className={`${styles.label} ${styles.iconTable}`}>
                                 <i className="fa-solid fa-table-cells"></i>
                                 <span className="hidden">바둑판형으로 보기</span>
                             </label>
                         </li>
                     </ul>
                 </header>
-                <ul className="portfolioList table">
-                    {this.state.empty ? (<p className="noResult">조건에 맞는 결과가 없습니다.</p>) : (this.state.list.map((i, idx)=><PortfolioItem key={idx} data={i} tagInfo={this.state.tag}/>))}
+                {/* <ul className="portfolioList table"> */}
+                <ul className={`${styles.portfolioList} ${this.state.viewTable ? styles.table: styles.list}`}>
+                    {this.state.empty ? 
+                        (<p className="noResult">조건에 맞는 결과가 없습니다.</p>) : 
+                        (this.state.list.map((i, idx)=><PortfolioItem key={idx} data={i} tagInfo={this.state.tag}/>))
+                    }
                 </ul>
                    
             </section>

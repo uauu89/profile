@@ -1,7 +1,7 @@
 import { Component } from "react";
 import PortfolioTag from "./PortfolioTag";
 
-import '../css/PortfolioForm.css';
+import styles from '../css/PortfolioForm.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faX } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,21 +9,26 @@ export default class PortfolioForm extends Component{
 
     render(){
         return(
-            <form id="modal_searchOption" method="POST" className="formSearchOption">
+            <form id="modal_searchOption" method="POST" 
+                className={`${styles.formSearchOption} ${this.props.formOpen > 0? styles.active: ""}`}
+            >
                 <button 
                     type="button"
                     aria-label="검색모달 닫기 버튼"
-                    className="btn_close"
-                    onClick={this.props.openOption}
+                    className={styles.btnClose}
+                    onClick={e=>this.props.formClose(e)}
                 >
                     <FontAwesomeIcon icon={faX} />
                 </button>
-                <ul className="tagList">
+                <ul className={styles.tagList}>
                     {this.props.data.tag.map(i => 
-                        <PortfolioTag key={i.idx} data={i} searchOption={this.props.searchOption} />
+                        <PortfolioTag 
+                            key={i.idx} data={i} 
+                            searchOption={this.props.searchOption} 
+                        />
                     )}
                 </ul>
-                <div className="searchMethodWrap">
+                <div className={styles.searchMethodWrap}>
                     <p>검색 방식</p>
                     <ul>
                         <li>
@@ -31,7 +36,7 @@ export default class PortfolioForm extends Component{
                                 type="radio"
                                 name="searchMethod"
                                 id="searchAnd"
-                                onChange={this.props.checkSearchMethod}
+                                onChange={e=>this.props.checkSearchMethod(e)}
                                 defaultChecked
                             >
                             </input>
@@ -42,7 +47,7 @@ export default class PortfolioForm extends Component{
                                 type="radio"
                                 name="searchMethod"
                                 id="searchOr"
-                                onChange={this.props.checkSearchMethod}
+                                onChange={e=>this.props.checkSearchMethod(e)}
                             >
                             </input>
                             <label htmlFor="searchOr">OR</label>

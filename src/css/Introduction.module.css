@@ -1,11 +1,11 @@
-.secIntroduction div{
+.wrap{
     position: relative;
     margin-top: 100px;
     font-size: 48px;
     line-height: 104px;
     padding-left: 50px;
 }
-.secIntroduction div::before{
+.wrap::before{
     content: "";
     display: block;
     position: absolute;
@@ -14,18 +14,31 @@
     height: 100%;
     background-color: var(--color_main);
 }
-
-
-.secIntroduction em{
+.myName{
     font-size: 64px;
-    /* padding-left: 5px; */
 }
 
-footer{
+
+.footer{
     margin-top: 140px;
     font-size: 30px;
 }
 
-footer span{
+.mailTitle{
     margin: 0 10px 0 6px;
+}
+
+@media (max-width : 600px) {
+    .wrap{
+        font-size: 8vw;
+        line-height: 150%;
+    }
+    .myName{
+        font-size: 10vw;
+        line-height: 250%;
+    }
+    .footer{
+        font-size: 6vw;
+        line-height: 150%;
+    }
 }
