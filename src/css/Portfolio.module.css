@@ -1,14 +1,7 @@
-
-
 .noResult{
     grid-column: 1 / -1;
     text-align: center;
 }
-
-
-
-
-
 
 .wrap{
     display: grid;
@@ -122,15 +115,10 @@ input:focus-visible + label{
 
 
 
-
-
-
-
 /* 포트폴리오 리스트 */
 
 .portfolioList{
     margin-top: 30px;
-    /* padding: 50px 10px; */
     padding: 50px 20px 50px 0;
     display: grid;
     grid-template-rows: min-content;
@@ -142,7 +130,6 @@ input:focus-visible + label{
     width: 10px;
 }
 .portfolioList::-webkit-scrollbar-thumb {
-    /* background: #242; */
     background: rgba(255,255,255, 0.5);
     border: 2px solid var(--color_main);
     border-radius:5px;
@@ -153,9 +140,10 @@ input:focus-visible + label{
 }
 
 
-
-.portfolioList.list{}
-
+/* 포트폴리오 리스트 - 목록형 보기 >> 클래스 생성을 위한 코드 */
+.portfolioList.list{
+    display: grid;
+}
 
 /* 포트폴리오 리스트 - 바둑형 보기 */
 .portfolioList.table{

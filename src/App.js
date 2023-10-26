@@ -1,12 +1,11 @@
 import {Component} from 'react';
-import { BrowserRouter, Routes, Route, NavLink } from "react-router-dom";
+import { HashRouter } from 'react-router-dom';
+import { Routes, Route, NavLink } from "react-router-dom";
 
 import './css/Common.css';
 import styles from  "./css/App.module.css"
 import Introduction from "./component/Introduction";
 import Portfolio from "./component/Portfolio";
-
-
 
 export default class App extends Component{
 
@@ -20,10 +19,9 @@ export default class App extends Component{
   setPortfolioGroup = e => {
     this.setState(e)
   }
-
   render(){
     return(
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter>
         <header>
             <h1 className="hidden">이순욱 개인 포트폴리오 사이트</h1>
             <nav>
@@ -60,10 +58,9 @@ export default class App extends Component{
               data={this.state}
               setPortfolioGroup={this.setPortfolioGroup}
             />}>
-
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
 
     )
   }
