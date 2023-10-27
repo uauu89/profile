@@ -8,3 +8,6 @@
     > + BrowserRouter > HashRouter로 변경
     > + 파비콘 추가
     
+#### 23.10.27
+
+1.  > + CSS 수정
